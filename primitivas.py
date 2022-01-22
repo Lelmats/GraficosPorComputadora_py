@@ -43,7 +43,8 @@ def main():
     #Imprimir Version
     version = glGetString(GL_VERSION)
     print(version)
-
+ 
+ 
     #Draw Loop
     while not glfw.window_should_close(window):
         #Establecer el viewport
