@@ -7,7 +7,7 @@ import glfw
 def draw():
     glBegin(GL_TRIANGLES)
 
-    glColor3f(1,1,1)
+    glColor3f(0,0,0)
 
     glVertex3f(-1,0,0)
     glVertex3f(0,1,0)
@@ -15,6 +15,57 @@ def draw():
 
     glEnd()
 
+def draw_point():
+    glBegin(GL_POINT)
+    glColor3f(1,0,0)
+
+    glVertex3f(-0.5,0,0)
+    glVertex3f(0.2,0,0)
+
+    glEnd()
+    
+def draw_lines():
+    glBegin(GL_LINES)
+    glColor3f(1,0,0)
+
+    glVertex3f(-0.5,0,0)
+    glVertex3f(0.2,0,0)
+
+    glEnd()
+
+def draw_striplines():
+    glBegin(GL_LINE_STRIP)
+    glColor3f(1,0,0)
+
+    glVertex3f(-0.5,0,0)
+    glVertex3f(0,0.5,0)
+    glVertex3f(0.5,0.6,0)
+    glVertex3f(0.5,-0.7,0)
+
+    glEnd()
+
+def draw_striptrangles():
+    glBegin(GL_TRIANGLE_STRIP)
+    glColor3f(1,0,0)
+
+    glVertex3f(-0.5,0,0)
+    glVertex3f(0,0.5,0)
+    glVertex3f(0.5,0.6,0)
+    glVertex3f(0.5,-0.7,0)
+
+    glEnd()
+
+def draw_polygon():
+    glBegin(GL_POLYGON)
+    glColor3f(1,0,0)
+
+    glVertex3f(-0.5,0,0)
+    glVertex3f(0,0.5,0)
+    glVertex3f(0.5,0.6,0)
+    glVertex3f(0.5,-0.7,0)
+    glVertex3f(0.5,1,0)
+
+    glEnd()
 def main():
     if not glfw.init():
         return
@@ -50,12 +101,15 @@ def main():
         #Establecer el viewport
         glViewport(0,0, 800, 600)
         #Establecer color de borrado
-        glClearColor(1,0,0,1)
+        glClearColor(0.7,0.7,0.7,1)
         #Borrar el contenido del viewport
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         #Dibujar
-        draw()
+        # draw_lines()
+        # draw_draw_striplines()
+        draw_point()
+        
 
         #Polling de inputs
         glfw.poll_events()
