@@ -29,22 +29,22 @@ def key_callback(window, key, scancode, action, mods):
     if key == glfw.KEY_B and action == glfw.PRESS:
         color = [0.0,0.0,1.0]
 
-    #Al presionar arriba se mueve hacia arriba
+    #Presionar Arriba
     if key == glfw.KEY_UP and (action == glfw.PRESS or glfw.REPEAT):
         posicion[1] = posicion [1] + velocidad
         if posicion[1] >= 1:
             posicion[1] = -0.9999
-    #Al presionar abajo se mueve hacia abajo
+    #Presionar Abajo
     if key == glfw.KEY_DOWN and (action == glfw.PRESS or glfw.REPEAT):
         posicion[1] = posicion [1] - velocidad
         if posicion[1] <= -1:
             posicion[1] = 0.9999
-    #Al presionar derecha se mueve hacia derecha
+    #Presionar derecha
     if key == glfw.KEY_RIGHT and (action == glfw.PRESS or glfw.REPEAT):
         posicion[0] = posicion [0] + velocidad
         if posicion[0] >= 1:
             posicion[0] = -0.9999
-    #Al presionar izquierda se mueve hacia izquierda
+    #Presionar izquierda
     if key == glfw.KEY_LEFT and (action == glfw.PRESS or glfw.REPEAT):
         posicion[0] = posicion [0] - velocidad
         if posicion[0] <= -1:
@@ -119,7 +119,6 @@ def main():
 
         #Dibujar
         draw()
-
 
         #Polling de inputs
         glfw.poll_events()
