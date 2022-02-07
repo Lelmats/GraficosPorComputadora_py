@@ -20,14 +20,14 @@ def key_callback(window, key, scancode, action, mods):
     global velocidad
 
     #Que la tecla escape cierre ventana al ser presionado
-    if key == glfw.KEY_ESCAPE and action == glfw.PRESS:
-        glfw.set_window_should_close(window, 1)
-    if key == glfw.KEY_R and action == glfw.PRESS:
-        color = [1.0,0.0,0.0]
-    if key == glfw.KEY_G and action == glfw.PRESS:
-        color = [0.0,1.0,0.0]
-    if key == glfw.KEY_B and action == glfw.PRESS:
-        color = [0.0,0.0,1.0]
+    # if key == glfw.KEY_ESCAPE and action == glfw.PRESS:
+    #     glfw.set_window_should_close(window, 1)
+    # if key == glfw.KEY_R and action == glfw.PRESS:
+    #     color = [1.0,0.0,0.0]
+    # if key == glfw.KEY_G and action == glfw.PRESS:
+    #     color = [0.0,1.0,0.0]
+    # if key == glfw.KEY_B and action == glfw.PRESS:
+    #     color = [0.0,0.0,1.0]
 
     #Presionar Arriba
     if key == glfw.KEY_UP and (action == glfw.PRESS or glfw.REPEAT):
