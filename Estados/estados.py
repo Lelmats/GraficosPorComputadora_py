@@ -3,16 +3,46 @@ from glew_wish import *
 import glfw
 
 color = [0.6, 0.1, 0.7]
-posicion = [-0.4,0.2]
+posicion = [0.2,0,0]
 velocidad = 0.01
+posicion_cuadrado = [-0.2,0.0,0.0]
+window = None
 
 def actualizar():
     global window
     global posicion
+    global posicion_cuadrado
+
     estado_tecla_arriba = glfw.get_key(window, glfw.KEY_UP)
     estado_tecla_abajo = glfw.get_key(window, glfw.KEY_DOWN)
     estado_tecla_derecha = glfw.get_key(window, glfw.KEY_RIGHT)
     estado_tecla_izquierda = glfw.get_key(window, glfw.KEY_LEFT)
+
+    #revisamos estados y realizamos acción
+    if estado_tecla_arriba == glfw.PRESS:
+        posicion[1] = posicion[1] + velocidad
+    if estado_tecla_derecha == glfw.PRESS:
+        posicion[0] = posicion[0] + velocidad
+    if estado_tecla_abajo == glfw.PRESS:
+        posicion[1] = posicion[1] - velocidad
+    if estado_tecla_izquierda == glfw.PRESS:
+        posicion[0] = posicion[0] - velocidad
+
+    estado_tecla_w = glfw.get_key(window, glfw.KEY_W)
+    estado_tecla_s = glfw.get_key(window, glfw.KEY_S)
+    estado_tecla_d = glfw.get_key(window, glfw.KEY_D)
+    estado_tecla_a = glfw.get_key(window, glfw.KEY_A)
+
+
+    #revisamos estados y realizamos acción awsd
+    if estado_tecla_w == glfw.PRESS:
+        posicion_cuadrado[1] = posicion_cuadrado[1] + velocidad
+    if estado_tecla_s == glfw.PRESS:
+        posicion_cuadrado[1] = posicion_cuadrado[1] - velocidad    
+    if estado_tecla_d == glfw.PRESS:
+        posicion_cuadrado[0] = posicion_cuadrado[0] + velocidad
+    if estado_tecla_a == glfw.PRESS:
+        posicion_cuadrado[0] = posicion_cuadrado[0] - velocidad
 
 def draw():
 
@@ -29,8 +59,24 @@ def draw():
 
     glEnd()
     glPopMatrix()
+
+    glPushMatrix()
+    glTranslatef(posicion_cuadrado[0], posicion_cuadrado[1], 0.0)
+    glBegin(GL_QUADS)
+
+    glColor3f(color[0],color[1],color[1])
+
+    glVertex3f(-0.2,0,0)
+    glVertex3f(0,0,0)
+    glVertex3f(0,-0.2,0)
+    glVertex3f(-0.2,-0.2,0)
+
+    glEnd()
+    glPopMatrix()
+    
     
 def main():
+    global window
     if not glfw.init():
         return
 
