@@ -1,1 +1,0 @@
-Tareas_GraficosPorComputadora_py
