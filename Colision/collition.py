@@ -1,9 +1,3 @@
-#Comandos para librerías
-#pip install pyopengl
-#pip install glfw
-
-#Importar librerias
-
 from OpenGL.GL import *
 from glew_wish import *
 import glfw
@@ -61,41 +55,35 @@ def actualizar():
 
     tiempo_anterior = tiempo_actual
     
-
-
-def draw():
-    global posicion_triangulo
-    draw_triangulo()
-    draw_cuadrado()
-
-
 def colisionando():
     colisionando = False
-    if posicion_triangulo[0] + 0.05 >= posicion_cuadrado[0] - 0.05 and posicion_triangulo[0] - 0.05 <= posicion_cuadrado[0] + 0.05 and posicion_triangulo[1] + 0.05 >= posicion_cuadrado[1] - 0.05 and posicion_triangulo[1] - 0.05 <= posicion_cuadrado[1] + 0.05:
+    #Metodo de bounding box:
+    #Extrema derecha del triangulo >= Extrema izquierda cuadrado
+    #Extrema izquierda del triangulo <= Extrema derecha cuadrado
+    #Extremo superior del triangulo >= Extremo inferior del cuadrado
+    #Extremo inferior del triangulo <= Extremo superior del cuadrado
+    if (posicion_triangulo[0] + 0.05 >= posicion_cuadrado[0] - 0.05 
+    and posicion_triangulo[0] - 0.05 <= posicion_cuadrado[0] + 0.05 
+    and posicion_triangulo[1] + 0.05 >= posicion_cuadrado[1] - 0.05 
+    and posicion_triangulo[1] -0.05 <= posicion_cuadrado[1] + 0.05):
         colisionando = True
     return colisionando
 
-
 def draw_triangulo():
+    global posicion_triangulo
     glPushMatrix()
     glTranslatef(posicion_triangulo[0], posicion_triangulo[1],0.0)
     glBegin(GL_TRIANGLES)
-    
     if colisionando():
-        glColor(0,0,1)
+        glColor3f(0,0,1)
     else:
-        glColor(1,0,0)
-        
+        glColor3f(1,0,0)
     #Establecer color
-    glColor3f(1,0,0)
-
     #Manda vertices a dibujar
     glVertex3f(-0.05,-0.05,0)
     glVertex3f(0.0,0.05,0)
     glVertex3f(0.05,-0.05,0)
-
     glEnd()
-    
     glBegin(GL_LINE_LOOP)
     glColor(0,0,0)
     glVertex3f(-0.05, -0.05, 0)
@@ -103,9 +91,6 @@ def draw_triangulo():
     glVertex3f(0.05, 0.05, 0)
     glVertex3f(0.05, -0.05, 0)
     glEnd()
-
-
-
     glPopMatrix()
     
 def draw_cuadrado():
@@ -133,6 +118,9 @@ def draw_cuadrado():
 
     glPopMatrix()
 
+def draw():
+    draw_triangulo()
+    draw_cuadrado()
 
 def main():
     global window
