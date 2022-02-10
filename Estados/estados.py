@@ -4,45 +4,54 @@ import glfw
 
 color = [0.6, 0.1, 0.7]
 posicion = [0.2,0,0]
-velocidad = 0.01
+velocidad = 0.5
 posicion_cuadrado = [-0.2,0.0,0.0]
 window = None
+tiempo_anterior = 0.0
 
 def actualizar():
+    global tiempo_anterior
     global window
     global posicion
     global posicion_cuadrado
+
+    tiempo_actual = glfw.get_time()
+    tiempo_delta = tiempo_actual - tiempo_anterior
+
 
     estado_tecla_arriba = glfw.get_key(window, glfw.KEY_UP)
     estado_tecla_abajo = glfw.get_key(window, glfw.KEY_DOWN)
     estado_tecla_derecha = glfw.get_key(window, glfw.KEY_RIGHT)
     estado_tecla_izquierda = glfw.get_key(window, glfw.KEY_LEFT)
 
-    #revisamos estados y realizamos acción
-    if estado_tecla_arriba == glfw.PRESS:
-        posicion[1] = posicion[1] + velocidad
-    if estado_tecla_derecha == glfw.PRESS:
-        posicion[0] = posicion[0] + velocidad
-    if estado_tecla_abajo == glfw.PRESS:
-        posicion[1] = posicion[1] - velocidad
-    if estado_tecla_izquierda == glfw.PRESS:
-        posicion[0] = posicion[0] - velocidad
-
     estado_tecla_w = glfw.get_key(window, glfw.KEY_W)
     estado_tecla_s = glfw.get_key(window, glfw.KEY_S)
     estado_tecla_d = glfw.get_key(window, glfw.KEY_D)
     estado_tecla_a = glfw.get_key(window, glfw.KEY_A)
 
+    #revisamos estados y realizamos acción
+    cantidad_movimiento = velocidad * tiempo_delta
+
+    if estado_tecla_arriba == glfw.PRESS:
+        posicion[1] = posicion[1] + cantidad_movimiento
+    if estado_tecla_derecha == glfw.PRESS:
+        posicion[0] = posicion[0] + cantidad_movimiento
+    if estado_tecla_abajo == glfw.PRESS:
+        posicion[1] = posicion[1] - cantidad_movimiento
+    if estado_tecla_izquierda == glfw.PRESS:
+        posicion[0] = posicion[0] - cantidad_movimiento
 
     #revisamos estados y realizamos acción awsd
     if estado_tecla_w == glfw.PRESS:
-        posicion_cuadrado[1] = posicion_cuadrado[1] + velocidad
+        posicion_cuadrado[1] = posicion_cuadrado[1] + cantidad_movimiento
     if estado_tecla_s == glfw.PRESS:
-        posicion_cuadrado[1] = posicion_cuadrado[1] - velocidad    
+        posicion_cuadrado[1] = posicion_cuadrado[1] - cantidad_movimiento    
     if estado_tecla_d == glfw.PRESS:
-        posicion_cuadrado[0] = posicion_cuadrado[0] + velocidad
+        posicion_cuadrado[0] = posicion_cuadrado[0] + cantidad_movimiento
     if estado_tecla_a == glfw.PRESS:
-        posicion_cuadrado[0] = posicion_cuadrado[0] - velocidad
+        posicion_cuadrado[0] = posicion_cuadrado[0] - cantidad_movimiento
+
+    tiempo_anterior = tiempo_actual
 
 def draw():
 
