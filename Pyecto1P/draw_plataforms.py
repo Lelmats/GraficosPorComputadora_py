@@ -17,21 +17,15 @@ def draw_plataform_0_1():
 
     glColor3f(0.9,0.1, 0.2)
 
-    glVertex3f(-0.7,0,0.0)
-    glVertex3f(0.2,0,0.0)
-    glVertex3f(0.2,0.1,0.0)
     glVertex3f(-0.7,0.1,0.0)
+    glVertex3f(0.2,0.1,0.0)
+    glVertex3f(0.2,0.2,0.0)
+    glVertex3f(-0.7,0.2,0.0)
 
     glEnd()
-    glBegin(GL_LINE_LOOP)
+  
+    
 
-    glColor(1,1,1)
-    glVertex3f(-0.7,0,0.0)
-    glVertex3f(0.2,0,0.0)
-    glVertex3f(0.2,0.1,0.0)
-    glVertex3f(-0.7,0.1,0.0)
-
-    glEnd()
     glPopMatrix()
     
 def draw_plataform():
@@ -41,23 +35,16 @@ def draw_plataform():
 
     glColor3f(0.9, 0.1, 0.2)
 
-    glVertex3f(0,0,0.0)
+    glVertex3f(0.0,0.1,0.0)
     glVertex3f(0.8,0.1,0.0)
     glVertex3f(0.8,0.2,0.0)
-    glVertex3f(0,0.1,0.0)
-
+    glVertex3f(0.0,0.2,0.0)
     glEnd()
 
-    glBegin(GL_LINE_LOOP)
-    glColor(1,1,1)
-    glVertex3f(0,0,0.0)
-    glVertex3f(0.8,0.1,0.0)
-    glVertex3f(0.8,0.2,0.0)
-    glVertex3f(0,0.1,0.0)
-
-    glEnd()
+    
     glPopMatrix()
 
+   
 def draw_plataform_2():
     glPushMatrix()
     glTranslatef(posicion_plataforma_2[0], posicion_plataforma_2[1], 0.0)
@@ -65,13 +52,14 @@ def draw_plataform_2():
 
     glColor3f(0.9, 0.1, 0.2)
 
-    glVertex3f(0.7,-0.9,0.0)
+    glVertex3f(0.7,-0.8,0.0)
     glVertex3f(-0.9,-0.8,0.0)
     glVertex3f(-0.9,-0.7,0.0)
-    glVertex3f(0.7,-0.8,0.0)
+    glVertex3f(0.7,-0.7,0.0)
 
     glEnd()
     glPopMatrix()
+    
 
 def draw_plataform_3():
     glPushMatrix()
@@ -80,10 +68,10 @@ def draw_plataform_3():
 
     glColor3f(0.9, 0.1, 0.2)
 
-    glVertex3f(-0.8,-0.9,0.0)
+    glVertex3f(-0.8,-0.8,0.0)
     glVertex3f(0.9,-0.8,0.0)
     glVertex3f(0.9,-0.7,0.0)
-    glVertex3f(-0.8,-0.8,0.0)
+    glVertex3f(-0.8,-0.7,0.0)
 
     glEnd()
     glPopMatrix()
@@ -95,10 +83,10 @@ def draw_plataform_4():
 
     glColor3f(0.9, 0.1, 0.2)
 
-    glVertex3f(0.7,-0.9,0.0)
+    glVertex3f(0.7,-0.8,0.0)
     glVertex3f(-0.9,-0.8,0.0)
     glVertex3f(-0.9,-0.7,0.0)
-    glVertex3f(0.7,-0.8,0.0)
+    glVertex3f(0.7,-0.7,0.0)
 
     glEnd()
     glPopMatrix()
@@ -110,10 +98,10 @@ def draw_plataform_5():
 
     glColor3f(0.9, 0.1, 0.2)
 
-    glVertex3f(-0.8,-0.9,0.0)
+    glVertex3f(-0.7,-0.8,0.0)
     glVertex3f(0.9,-0.8,0.0)
     glVertex3f(0.9,-0.7,0.0)
-    glVertex3f(-0.8,-0.8,0.0)
+    glVertex3f(-0.7,-0.7,0.0)
 
     glEnd()
     glPopMatrix()

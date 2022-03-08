@@ -23,8 +23,8 @@ def actualizar():
     escala = escala + 0.0005
     if (escala >= 3.0):
         escala = 0.5
-    posicion_triangulo = posicion_triangulo + 0.0005
-    if (posicion_triangulo >= 1.0):
+    posicion_triangulo = posicion_triangulo + 0.005
+    if (posicion_triangulo >= 0.5):
         posicion_triangulo = -1.0
 
 def draw_ejes():

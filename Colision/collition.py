@@ -118,6 +118,18 @@ def draw_cuadrado():
 
     glPopMatrix()
 
+def draw_pasto():
+    glBegin(GL_QUADS)
+
+    glColor3f(0.4, 0.9, 0.21)
+
+    glVertex3f(-0.05,0.05,0.0)
+    glVertex3f(0.05,0.05,0.0)
+    glVertex3f(0.05,-0.05,0.0)
+    glVertex3f(-0.05,-0.05,0.0)
+
+    glEnd()
+
 def draw():
     draw_triangulo()
     draw_cuadrado()
@@ -125,8 +137,8 @@ def draw():
 def main():
     global window
 
-    width = 700
-    height = 700
+    width = 1280
+    height = 720
     #Inicializar GLFW
     if not glfw.init():
         return
