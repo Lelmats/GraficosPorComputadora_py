@@ -12,6 +12,12 @@ class Asteroide:
     direccion = 54.0
     velocidad = 1.2
 
+    def __init__(self, x, y, direccion, velocidad):
+        self.posicion_x = x
+        self.posicion_y = y
+        self.direccion = direccion
+        self.velocidad = velocidad
+        
     def actualizar (self, tiempo_delta):
         cantidad_movimiento = self.velocidad * tiempo_delta
         self.posicion_x = self.posicion_x + (math.cos(self.direccion * math.pi / 180.0) * cantidad_movimiento)
