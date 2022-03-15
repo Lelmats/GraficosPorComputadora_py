@@ -1,22 +1,15 @@
 from msilib.schema import Directory
+from re import M
 from OpenGL.GL import *
 from glew_wish import *
 import glfw
 import math
+from Modelo import *
 
-class Asteroide:
-    posicion_x = -0.2
-    posicion_y = 0.0
-    posicion_z = 0.0
-
-    direccion = 54.0
-    velocidad = 1.2
+class Asteroide(Modelo):
 
     def __init__(self, x, y, direccion, velocidad):
-        self.posicion_x = x
-        self.posicion_y = y
-        self.direccion = direccion
-        self.velocidad = velocidad
+        super().__init__(x,y,0.0, velocidad, direccion)
         
     def actualizar (self, tiempo_delta):
         cantidad_movimiento = self.velocidad * tiempo_delta

@@ -2,15 +2,14 @@ from OpenGL.GL import *
 from glew_wish import *
 import glfw
 import math
+from Modelo import *
 
-class Bala:
-    posicion_x = 0.0
-    posicion_y = 0.0
-    posicion_z = 0.0
+class Bala(Modelo):
+
     disparando = False
-    angulo = 0.0
-    velocidad = 2.5
-    tiempo_anterior = 0.0
+
+    def __init__(self):
+        super().__init__(velocidad=2.5)
 
     def dibujar(self):
             if self.disparando:
@@ -29,10 +28,10 @@ class Bala:
         if self.disparando:
             cantidad_movimiento = self.velocidad * tiempo_delta
             self.posicion_x = self.posicion_x + (
-                math.cos(self.angulo * math.pi / 180.0) * cantidad_movimiento
+                math.cos(self.direccion * math.pi / 180.0) * cantidad_movimiento
             )
             self.posicion_y = self.posicion_y + (
-                math.sin(self.angulo * math.pi / 180.0) * cantidad_movimiento
+                math.sin(self.direccion * math.pi / 180.0) * cantidad_movimiento
             )
 
             if (self.posicion_x > 1 or self.posicion_x < -1 or 

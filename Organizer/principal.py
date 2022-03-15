@@ -45,7 +45,7 @@ def inicializar_asteroides():
         posicion_y = (random.random() * 2) - 1 
         direccion = random.random() * 360
         velocidad = (random.random() * 0.5) + 0.6
-        asteroides.append(Asteroide(posicion_x, posicion_y,direccion, velocidad))
+        asteroides.append(Asteroide(posicion_x, posicion_y, direccion, velocidad))
 
 def main():
     global window

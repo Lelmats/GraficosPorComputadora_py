@@ -4,14 +4,17 @@ from glew_wish import *
 import glfw
 import math
 from Bala import *
+from Modelo import *
 
 class Nave(Modelo):
-    velocidad = 1.2
-    angulo = 0.0
+
     velocidad_rotacion = 270.0
     fase = 90.0
     balas = [Bala(), Bala(), Bala(), Bala(), Bala()]
     estado_anterior_espacio = glfw.RELEASE
+
+    def __init__(self):
+        super().__init__(0.0,0.0,0.0,1.2,0.0)
 
     def dibujar(self):
         
@@ -20,7 +23,7 @@ class Nave(Modelo):
 
         glPushMatrix()
         glTranslatef(self.posicion_x, self.posicion_y, self.posicion_z)
-        glRotatef(self.angulo, 0.0, 0.0, 1.0)
+        glRotatef(self.direccion, 0.0, 0.0, 1.0)
         glBegin(GL_TRIANGLES)
         glColor3f(0.3, 0.0, 1.0)
         glVertex3f(-0.05,-0.05,0)
@@ -53,28 +56,28 @@ class Nave(Modelo):
                     bala.disparando = True
                     bala.posicion_x = self.posicion_x
                     bala.posicion_y = self.posicion_y
-                    bala.angulo = self.angulo + self.fase
+                    bala.direccion = self.direccion + self.fase
                     break
 
         #Revisamos estados y realizamos acciones
         cantidad_movimiento = self.velocidad * tiempo_delta
         if estado_tecla_arriba == glfw.PRESS:
             self.posicion_x = self.posicion_x + (
-                math.cos((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
+                math.cos((self.direccion + self.fase) * math.pi / 180.0) * cantidad_movimiento
             )
             self.posicion_y = self.posicion_y + (
-                math.sin((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
+                math.sin((self.direccion + self.fase) * math.pi / 180.0) * cantidad_movimiento
             )
 
         cantidad_rotacion = self.velocidad_rotacion * tiempo_delta
         if estado_tecla_izquierda == glfw.PRESS:
-            self.angulo = self.angulo + cantidad_rotacion
-            if self.angulo > 360.0:
-                self.angulo = self.angulo - 360.0 
+            self.direccion = self.direccion + cantidad_rotacion
+            if self.direccion > 360.0:
+                self.direccion = self.direccion - 360.0 
         if estado_tecla_derecha == glfw.PRESS:
-            self.angulo = self.angulo - cantidad_rotacion
-            if self.angulo < 0.0:
-                self.angulo = self.angulo + 360.0
+            self.direccion = self.direccion - cantidad_rotacion
+            if self.direccion < 0.0:
+                self.direccion = self.direccion + 360.0
 
 
         if self.posicion_x > 1.05: 
