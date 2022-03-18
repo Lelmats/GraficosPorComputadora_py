@@ -8,7 +8,7 @@ from Modelo import *
 
 class Nave(Modelo):
 
-    velocidad_rotacion = 270.0
+    velocidad_rotacion = 200.0
     fase = 90.0
     balas = [Bala(), Bala(), Bala(), Bala(), Bala()]
     estado_anterior_espacio = glfw.RELEASE

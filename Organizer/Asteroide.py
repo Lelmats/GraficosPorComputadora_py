@@ -38,7 +38,7 @@ class Asteroide(Modelo):
             glPushMatrix()
             glTranslatef(self.posicion_x, self.posicion_y, self.posicion_z)
             glBegin(GL_QUADS)
-            glColor3f(0.4, 0.9, 0.21)
+            glColor3f(0, 0, 0)
             for i in range(0, 360, 10):
                 componente_x = 0.07 * math.cos(i * math.pi/180.0)
                 componente_y = 0.07 * math.sin(i * math.pi/180.0)
