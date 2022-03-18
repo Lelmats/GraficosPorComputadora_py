@@ -12,9 +12,14 @@ class Nave(Modelo):
     fase = 90.0
     balas = [Bala(), Bala(), Bala(), Bala(), Bala()]
     estado_anterior_espacio = glfw.RELEASE
+    herido = False
 
     def __init__(self):
         super().__init__(0.0,0.0,0.0,1.2,0.0)
+        self.extremo_izquierdo = 0.05
+        self.extremo_derecho = 0.05
+        self.extremo_inferior = 0.05
+        self.extremo_superior = 0.05
 
     def dibujar(self):
         
@@ -25,22 +30,19 @@ class Nave(Modelo):
         glTranslatef(self.posicion_x, self.posicion_y, self.posicion_z)
         glRotatef(self.direccion, 0.0, 0.0, 1.0)
         glBegin(GL_TRIANGLES)
-        glColor3f(0.3, 0.0, 1.0)
+
+        if self.herido:
+            glColor3f(0.3, 0.0, 1.0)
+        else:
+            glColor3f(1.0, 0.0, 0.3)
+
         glVertex3f(-0.05,-0.05,0)
         glVertex3f(0.0,0.05,0)
         glVertex3f(0.05,-0.05,0)
         glEnd()
-
-        glBegin(GL_LINE_LOOP)
-        glColor3f(0.0, 0.0, 0.0)
-        glVertex3f(-0.05, -0.05, 0)
-        glVertex3f(-0.05,0.05,0.0)
-        glVertex3f(0.05, 0.05,0.0)
-        glVertex3f(0.05,-0.05,0.0)
-        glEnd()
-
         glPopMatrix()
 
+        self.dibujar_bounding_box()
 
     def actualizar(self, window, tiempo_delta ):
         #Leer los estados de las teclas que queremos

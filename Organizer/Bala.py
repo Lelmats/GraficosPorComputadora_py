@@ -10,6 +10,10 @@ class Bala(Modelo):
 
     def __init__(self):
         super().__init__(velocidad=2.5)
+        self.extremo_izquierdo = 0.01
+        self.extremo_derecho = 0.01
+        self.extremo_inferior = 0.01
+        self.extremo_superior = 0.01
 
     def dibujar(self):
             if self.disparando:
@@ -23,6 +27,8 @@ class Bala(Modelo):
                 glVertex3f(-0.01,-0.01,0.0)
                 glEnd()
                 glPopMatrix()
+
+                self.dibujar_bounding_box()
 
     def actualizar(self, tiempo_delta):
         if self.disparando:

@@ -2,7 +2,6 @@
 #pip install glfw
 from cmath import cos, pi, sin
 import dis
-
 from scipy import rand
 from Asteroide import Asteroide
 from OpenGL.GL import *
@@ -26,7 +25,15 @@ def actualizar():
    
     nave.actualizar(window, tiempo_delta)
     for asteroide in asteroides:
-        asteroide.actualizar(tiempo_delta)
+        if asteroide.vivo:
+            asteroide.actualizar(tiempo_delta)
+            if asteroide.colisionando(nave):
+                nave.herido = True
+            for bala in nave.balas:
+                if bala.disparando:
+                    if asteroide.colisionando(bala):
+                        bala.disparando = False
+                        asteroide.vivo = False
     tiempo_anterior = tiempo_actual
     
 def colisionando():
