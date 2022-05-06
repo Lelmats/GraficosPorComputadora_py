@@ -1,3 +1,4 @@
+from turtle import color
 import OpenGL.GL as gl
 import glfw
 import numpy as np
@@ -6,18 +7,13 @@ from pyexpat import model
 from re import M
 from Shader import *
 from Modelo import *
+from Triangulo import *
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 modelo = None
-
-# """ - Todo lo que este adentro va a ser un string y nos va a respetar saltos de linea, etc.
-# La primera linea siempre tiene que ser la versión.
-# layout - es como una plantilla a la que se le pasa un identificador (location = 0)
-# in - atributos de entradas (el valor se le asigna desde el CPU)
-# vec3 es el tipo de dato (x, y, z) y position es el nombre de la variable.
-# out - salida
+window = None
 
 vertex_shader_source = ""
 with open('vertex_shader.glsl') as archivo:
@@ -27,6 +23,12 @@ fragment_shader_source = ""
 with open('fragment_shader.glsl') as archivo:
     fragment_shader_source = archivo.readlines()
 
+def actualizar():
+    global window
+    estado_arriba = glfw.get_key(window, glfw.KEY_UP)
+    if estado_arriba == glfw.PRESS:
+        modelo.mover(modelo.ARRIBA)
+    
 def dibujar():
 
     global modelo
@@ -35,7 +37,7 @@ def dibujar():
 
 def main():
     global modelo
-
+    global window
     glfw.init()
 
     # Trabaja con la versión 3
@@ -57,8 +59,11 @@ def main():
     shader = Shader(vertex_shader_source, fragment_shader_source)
 
     posicion_id = gl.glGetAttribLocation(shader.shader_program, "position")
+    color_id = gl.glGetAttribLocation(shader.shader_program, "color")
+    
+    transformaciones_id = gl.glGetUniformLocation(shader.shader_program, "transformations")
 
-    modelo = Modelo(shader, posicion_id)
+    modelo = Triangulo(shader, posicion_id, color_id, transformaciones_id)
 
     # Draw loop
     while not glfw.window_should_close(window):
@@ -83,3 +88,4 @@ def framebuffer_size_callbak(window, width, height):
 
 if __name__ == '__main__':
     main()
+

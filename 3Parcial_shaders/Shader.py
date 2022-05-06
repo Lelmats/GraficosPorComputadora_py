@@ -1,10 +1,8 @@
 import OpenGL.GL as gl
 
 class Shader:
-
     def __init__(self, vertex_shader_source, fragment_shader_source):
-
-        #Vertex shader
+         #vertex shader
         vertex_shader = gl.glCreateShader(gl.GL_VERTEX_SHADER)
         gl.glShaderSource(vertex_shader, vertex_shader_source)
         gl.glCompileShader(vertex_shader)
@@ -14,7 +12,7 @@ class Shader:
             info_log = gl.glGetShaderInfoLog(vertex_shader)
             raise Exception(info_log)
         
-        #Fragment shader
+        #fragment shader
         fragment_shader = gl.glCreateShader(gl.GL_FRAGMENT_SHADER)
         gl.glShaderSource(fragment_shader, fragment_shader_source)
         gl.glCompileShader(fragment_shader)
@@ -44,6 +42,7 @@ class Shader:
 
     def liberar_programa(self):
         gl.glUseProgram(0)
-    
+
     def borrar(self):
         gl.glDeleteProgram(self.shader_program)
+        
